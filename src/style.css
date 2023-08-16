@@ -11,3 +11,7 @@ h1 {
   align-items: center;
   height: 200px;
 }
+
+#divContainer{
+  border: 2px solid red ;
+}
