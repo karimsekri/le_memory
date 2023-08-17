@@ -3,6 +3,7 @@ const btnStart = document.querySelector("#init-button") as HTMLButtonElement;
 const colors = ["red", "blue", "green", "yellow", "orange", "purple", "pink", "brown"];
 
 let compteur = 0 ;
+let lastcolor: HTMLDivElement | null= null
 
 btnStart.addEventListener("click", () => {
   afficher_debut_jeu();
@@ -25,6 +26,7 @@ function afficher_debut_jeu (){
     //tile.style.backgroundColor = colors[Math.floor(i/2)]
     tile.style.borderRadius = "5px";
     tile.classList.add(colors[Math.floor(i/2)])
+    tile.setAttribute("color",colors[Math.floor(i/2)])
     return tile
 })
 
@@ -34,11 +36,24 @@ tiles.forEach( tile => divContainer.appendChild(tile))
 
 
 let nodeList = document.querySelectorAll(".tile");
-let elements = Array.from(nodeList);
+let elements = Array.from(nodeList) as HTMLDivElement[];
 elements.forEach( (element) => {
         element.classList.add("not-revealed")
         element.addEventListener("click", () => {
-            element.classList.remove("not-revealed")
+          element.classList.remove("not-revealed")
+
+          if(lastcolor === null){
+            lastcolor = element
+          }
+          else {
+            if(lastcolor.getAttribute('color') !== element.getAttribute("color")){
+              setTimeout(() => {
+                element.classList.add("not-revealed")
+                lastcolor?.classList.add("not-revealed")
+                lastcolor = null
+              }, 1000)
+            }
+          }
         })
 })
 

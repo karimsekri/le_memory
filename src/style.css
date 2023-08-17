@@ -15,10 +15,6 @@ h1 {
   grid-row-gap : 10px ; 
 }
 
-.not-revealed{
-  background-color: grey ;
-}
-
 .yellow{
 background-color: yellow;
 }
@@ -42,4 +38,8 @@ background-color: yellow;
 }
 .brown{
   background-color: brown;
+}
+
+.not-revealed {
+  background-color: grey ;
 }
