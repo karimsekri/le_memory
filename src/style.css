@@ -18,6 +18,10 @@ h1 {
   
 }
 
-.tile{
- 
+.not-revealed{
+  background-color: grey ;
+}
+
+.yellow{
+background-color: yellow;
 }
