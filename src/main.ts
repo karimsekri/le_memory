@@ -27,7 +27,10 @@ function afficher_debut_jeu (){
     return tile
 })
 
-
+tiles.sort(() => Math.random() - 0.5);
 // Add the tiles to the app
 tiles.forEach( tile => divContainer.appendChild(tile))
+
+
 }
+
