@@ -20,9 +20,10 @@ function afficher_debut_jeu (){
   const tiles = new Array(16).fill('').map( (_, i) => {
     const tile = document.createElement("div")
     tile.setAttribute("class", "tile")
-    tile.style.width ="50px"
-    tile.style.height = "50px"
+    tile.style.width ="100px"
+    tile.style.height = "100px"
     tile.style.backgroundColor = colors[Math.floor(i/2)]
+    tile.style.borderRadius = "5px";
     return tile
 })
 
