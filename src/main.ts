@@ -4,23 +4,27 @@ const labelGagne = document.createElement("label") as HTMLLabelElement;
 const notreImage = document.createElement("img") as HTMLImageElement;
 const colors = ["red", "blue", "green", "yellow", "orange", "purple", "pink", "brown"];
 
+
 let compteur = 0 ;
 let i = 0;
 let lastcolor: HTMLDivElement | null= null;
-let lastImage : string;
+let lastImage = [""];
+lastImage.shift();
 
+for (let index = 0; index < 8; index++) {
+  
+    fetch("https://dog.ceo/api/breeds/image/random")
+    .then((response) => {
+        return response.json();
+    })
+    .then((data) => {
+       // console.log(data);
+        lastImage.push(data.message);
+        console.log(lastImage);
+        
+    })
+}
 
-// // Promises
-// fetch("https://dog.ceo/api/breeds/image/random")
-// .then((response) => {
-//     return response.json();
-// })
-// .then((data) => {
-//     console.log(data);
-//     notreImage.setAttribute("src", data.message)
-    
-// })
-// app.appendChild(notreImage);
 btnStart.addEventListener("click", () => {
   labelGagne.remove();
   afficher_debut_jeu();
@@ -48,28 +52,9 @@ function afficher_debut_jeu (){
     tile.style.width ="100px"
     tile.style.height = "100px"
     //tile.style.backgroundColor = colors[Math.floor(i/2)]
-    tile.style.borderRadius = "5px";
-    tile.classList.add(colors[Math.floor(i/2)])
-    // tile.setAttribute("color",colors[Math.floor(i/2)])
-    
-    // Promises
-    if (i%2 == 0) {
-      
-    
-    fetch("https://dog.ceo/api/breeds/image/random")
-    .then((response) => {
-        return response.json();
-    })
-    .then((data) => {
-        //console.log(data);
-        tile.setAttribute("src", data.message);
-        lastImage = data.message;
-        console.log(data.message);
-        console.log(lastImage);
-    })
-  }
+    tile.style.borderRadius = "5px";   
+    tile.setAttribute("src",lastImage[Math.floor(i/2)])
   
-    
   return tile
   })
 
