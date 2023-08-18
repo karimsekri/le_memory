@@ -1,6 +1,7 @@
 const app = document.querySelector('#app') as HTMLDivElement;
 const btnStart = document.querySelector("#init-button") as HTMLButtonElement;
-const labelGagne = document.createElement("label") as HTMLLabelElement
+const labelGagne = document.createElement("label") as HTMLLabelElement;
+const notreImage = document.createElement("img") as HTMLImageElement;
 const colors = ["red", "blue", "green", "yellow", "orange", "purple", "pink", "brown"];
 
 let compteur = 0 ;
@@ -8,7 +9,17 @@ let i = 0;
 let lastcolor: HTMLDivElement | null= null;
 let secondColor : string;
 
-
+// Promises
+fetch("https://dog.ceo/api/breeds/image/random")
+.then((response) => {
+    return response.json();
+})
+.then((data) => {
+    console.log(data);
+    notreImage.setAttribute("src", data.message)
+    
+})
+app.appendChild(notreImage);
 btnStart.addEventListener("click", () => {
   labelGagne.remove();
   afficher_debut_jeu();
@@ -26,10 +37,9 @@ function afficher_debut_jeu (){
   const divContainer = document.createElement("div") as HTMLDivElement
   divContainer.setAttribute('id', 'divContainer')
 
- 
-  
- 
   app.appendChild(divContainer);
+  
+  
 
   const tiles = new Array(16).fill('').map( (_, i) => {
     const tile = document.createElement("div")
@@ -40,12 +50,13 @@ function afficher_debut_jeu (){
     tile.style.borderRadius = "5px";
     tile.classList.add(colors[Math.floor(i/2)])
     tile.setAttribute("color",colors[Math.floor(i/2)])
+    
     return tile
   })
 
-tiles.sort(() => Math.random() - 0.5);
-// Add the tiles to the app
-tiles.forEach( tile => divContainer.appendChild(tile))
+  tiles.sort(() => Math.random() - 0.5);
+  // Add the tiles to the app
+  tiles.forEach( tile => divContainer.appendChild(tile))
 
 
 let nodeList = document.querySelectorAll(".tile");
