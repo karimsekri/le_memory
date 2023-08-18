@@ -3,7 +3,9 @@ const btnStart = document.querySelector("#init-button") as HTMLButtonElement;
 const colors = ["red", "blue", "green", "yellow", "orange", "purple", "pink", "brown"];
 
 let compteur = 0 ;
-let lastcolor: HTMLDivElement | null= null
+let lastcolor: HTMLDivElement | null= null;
+let secondColor : string;
+
 
 btnStart.addEventListener("click", () => {
   afficher_debut_jeu();
@@ -28,7 +30,7 @@ function afficher_debut_jeu (){
     tile.classList.add(colors[Math.floor(i/2)])
     tile.setAttribute("color",colors[Math.floor(i/2)])
     return tile
-})
+  })
 
 tiles.sort(() => Math.random() - 0.5);
 // Add the tiles to the app
@@ -53,6 +55,12 @@ elements.forEach( (element) => {
                 lastcolor = null
               }, 1000)
             }
+          else{
+            if(lastcolor.getAttribute('color') === element.getAttribute("color")){
+                lastcolor = null;  
+            
+            }
+          } 
           }
         })
 })
