@@ -2,8 +2,8 @@ const app = document.querySelector('#app') as HTMLDivElement;
 const btnStart = document.querySelector("#init-button") as HTMLButtonElement;
 const labelGagne = document.createElement("label") as HTMLLabelElement;
 const notreImage = document.createElement("img") as HTMLImageElement;
+const timer = document.createElement('label') as HTMLLabelElement
 //const colors = ["red", "blue", "green", "yellow", "orange", "purple", "pink", "brown"];
-
 
 let compteur = 0 ;
 let i = 0;
@@ -31,7 +31,18 @@ btnStart.addEventListener("click", () => {
 
 function afficher_debut_jeu (){
   btnStart.remove();
+
+
+  let timerVariable = setInterval(countUpTimer, 1000);
+  let totalSeconds = 0;
   
+  function countUpTimer() {
+    ++totalSeconds;
+    let hour = Math.floor(totalSeconds / 3600);
+    let minute = Math.floor((totalSeconds - hour * 3600) / 60);
+    let seconds = totalSeconds - (hour * 3600 + minute * 60);
+    timer.getElementById("count_up_timer").innerHTML = hour + ":" + minute + ":" + seconds;
+  }
 
   const divContainer = document.createElement("div") as HTMLDivElement
   divContainer.setAttribute('id', 'divContainer')
