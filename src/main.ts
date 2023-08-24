@@ -105,8 +105,6 @@ function afficher_debut_jeu (niveau : number){
     console.log(seconds);
 
   }
-  const divContainer = document.createElement("div") as HTMLDivElement
-  divContainer.setAttribute('id', 'divContainer')
 
   app.appendChild(divContainer);
   const tiles = new Array(niveau).fill('').map( (_, i) => {
