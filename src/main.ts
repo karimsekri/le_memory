@@ -8,8 +8,38 @@ const timer = document.createElement('label') as HTMLLabelElement;
 timer.setAttribute('id',"count_up_timer");
 //const colors = ["red", "blue", "green", "yellow", "orange", "purple", "pink", "brown"];
 
+
 const divResultat = document.createElement('div') as HTMLDivElement;
 divResultat.setAttribute('id','divResultat');
+
+const divContainer = document.createElement("div") as HTMLDivElement;
+divContainer.setAttribute('id', 'divContainer');
+
+const maCheckbox44 = document.createElement("input") as HTMLInputElement;
+maCheckbox44.classList.add("checkbox");
+maCheckbox44.setAttribute("type", "checkbox");
+maCheckbox44.setAttribute("name", "4x4");
+
+const monLabel44 = document.createElement("label") as HTMLLabelElement;
+monLabel44.innerText = "4x4";
+
+const monLabel66 = document.createElement("label") as HTMLLabelElement;
+monLabel66.innerText = "6x6";
+
+const maCheckbox66 = document.createElement("input") as HTMLInputElement;
+maCheckbox66.classList.add("checkbox");
+maCheckbox66.setAttribute("type", "checkbox");
+maCheckbox66.setAttribute("name", "6x6");
+
+divContainer.appendChild(maCheckbox44);
+divContainer.appendChild(monLabel44);
+
+divContainer.appendChild(maCheckbox66);
+divContainer.appendChild(monLabel66);
+
+
+let monNiveau = 0;
+
 
 let compteur = 0 ;
 let i = 0;
@@ -30,12 +60,37 @@ for (let index = 0; index < 8; index++) {
 
 btnStart.addEventListener("click", () => {
   labelGagne.remove();
-  afficher_debut_jeu();
+  afficher_debut_jeu(16);  
 });
 
+maCheckbox44.addEventListener("change", () => {
+  if (maCheckbox44.checked) {
+    monNiveau = 16;
+    maCheckbox66.checked = false;
+   
+  }  
+  else if(maCheckbox66.checked){
+    monNiveau = 36;
+    maCheckbox44.checked = false;
+  }
+  afficher_debut_jeu(monNiveau);
+})
 
+maCheckbox66.addEventListener("change", () => {
+  if (maCheckbox44.checked) {
+    monNiveau = 16;
+    maCheckbox66.checked = false;
+   
+  }  
+  else if(maCheckbox66.checked){
+    monNiveau = 36;
+    maCheckbox44.checked = false;
+  }
+  
+  afficher_debut_jeu(monNiveau); 
+})
 
-function afficher_debut_jeu (){
+function afficher_debut_jeu (niveau : number){
   btnStart.remove();
 
   let timerVariable = setInterval(countUpTimer, 1000);
@@ -54,8 +109,7 @@ function afficher_debut_jeu (){
   divContainer.setAttribute('id', 'divContainer')
 
   app.appendChild(divContainer);
-  
-  const tiles = new Array(16).fill('').map( (_, i) => {
+  const tiles = new Array(niveau).fill('').map( (_, i) => {
     const tileDiv = document.createElement("div")
     tileDiv.setAttribute("class", "tileDiv")
 
@@ -79,7 +133,7 @@ function afficher_debut_jeu (){
 let nodeList = document.querySelectorAll(".tile");
 let elements = Array.from(nodeList) as HTMLImageElement[];
 elements.forEach( (element) => {
-        console.log(element);
+        
                
         element.addEventListener("click", () => {
          
@@ -120,7 +174,6 @@ elements.forEach( (element) => {
           
         })
 })
-
 
 }
 
