@@ -1,8 +1,11 @@
+import { setupCounter } from "./counter";
+
 const app = document.querySelector('#app') as HTMLDivElement;
 const btnStart = document.querySelector("#init-button") as HTMLButtonElement;
 const labelGagne = document.createElement("label") as HTMLLabelElement;
 const notreImage = document.createElement("img") as HTMLImageElement;
-const timer = document.createElement('label') as HTMLLabelElement
+const timer = document.createElement('label') as HTMLLabelElement;
+timer.setAttribute('id',"count_up_timer");
 //const colors = ["red", "blue", "green", "yellow", "orange", "purple", "pink", "brown"];
 
 let compteur = 0 ;
@@ -41,13 +44,16 @@ function afficher_debut_jeu (){
     let hour = Math.floor(totalSeconds / 3600);
     let minute = Math.floor((totalSeconds - hour * 3600) / 60);
     let seconds = totalSeconds - (hour * 3600 + minute * 60);
-    timer.getElementById("count_up_timer").innerHTML = hour + ":" + minute + ":" + seconds;
+    timer.innerText = hour + ":" + minute + ":" + seconds;
+    console.log(seconds);
+
   }
 
   const divContainer = document.createElement("div") as HTMLDivElement
   divContainer.setAttribute('id', 'divContainer')
 
   app.appendChild(divContainer);
+  app.appendChild(timer);
   
   
 
