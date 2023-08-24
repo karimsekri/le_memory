@@ -1,5 +1,3 @@
-import { setupCounter } from "./counter";
-
 const app = document.querySelector('#app') as HTMLDivElement;
 const btnStart = document.querySelector("#init-button") as HTMLButtonElement;
 const labelGagne = document.createElement("label") as HTMLLabelElement;
