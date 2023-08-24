@@ -8,6 +8,9 @@ const timer = document.createElement('label') as HTMLLabelElement;
 timer.setAttribute('id',"count_up_timer");
 //const colors = ["red", "blue", "green", "yellow", "orange", "purple", "pink", "brown"];
 
+const divResultat = document.createElement('div') as HTMLDivElement;
+divResultat.setAttribute('id','divResultat');
+
 let compteur = 0 ;
 let i = 0;
 let lastcolor: HTMLImageElement | null= null;
@@ -35,7 +38,6 @@ btnStart.addEventListener("click", () => {
 function afficher_debut_jeu (){
   btnStart.remove();
 
-
   let timerVariable = setInterval(countUpTimer, 1000);
   let totalSeconds = 0;
   
@@ -48,15 +50,11 @@ function afficher_debut_jeu (){
     console.log(seconds);
 
   }
-
   const divContainer = document.createElement("div") as HTMLDivElement
   divContainer.setAttribute('id', 'divContainer')
 
   app.appendChild(divContainer);
-  app.appendChild(timer);
   
-  
-
   const tiles = new Array(16).fill('').map( (_, i) => {
     const tileDiv = document.createElement("div")
     tileDiv.setAttribute("class", "tileDiv")
@@ -78,8 +76,6 @@ function afficher_debut_jeu (){
   // Add the tiles to the app
   tiles.forEach( tileDiv => divContainer.appendChild(tileDiv))
   
-
-
 let nodeList = document.querySelectorAll(".tile");
 let elements = Array.from(nodeList) as HTMLImageElement[];
 elements.forEach( (element) => {
@@ -109,9 +105,11 @@ elements.forEach( (element) => {
                 i++;
                 if (i === 8 ) {
                   divContainer.remove();
-                  labelGagne.innerText = "Vous avez gagné en : " + compteur/2 + "coups";
-                  app.appendChild(labelGagne);
-                  app.appendChild(btnStart);
+                  labelGagne.innerText = "Vous avez gagné en : "   + compteur/2 + "  coups et en    " + timer.innerText + "  temps";
+                  clearTimeout(timerVariable);
+                  divResultat.appendChild(labelGagne);
+                  divResultat.appendChild(btnStart);
+                  app.appendChild(divResultat)
 
                 }
             
