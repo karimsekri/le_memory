@@ -37,8 +37,6 @@ divContainer.appendChild(monLabel66);
 
 
 let monNiveau = 0;
-
-
 let compteur = 0 ;
 let i = 0;
 let lastcolor: HTMLImageElement | null= null;
@@ -65,27 +63,23 @@ maCheckbox44.addEventListener("change", () => {
   if (maCheckbox44.checked) {
     monNiveau = 16;
     maCheckbox66.checked = false;
-   
+    supprimerImages();
+    afficher_debut_jeu(monNiveau);
   }  
-  else if(maCheckbox66.checked){
-    monNiveau = 36;
-    maCheckbox44.checked = false;
-  }
-  afficher_debut_jeu(monNiveau);
+
+  
 })
 
 maCheckbox66.addEventListener("change", () => {
-  if (maCheckbox44.checked) {
-    monNiveau = 16;
-    maCheckbox66.checked = false;
-   
-  }  
-  else if(maCheckbox66.checked){
+  if (maCheckbox66.checked) {
     monNiveau = 36;
     maCheckbox44.checked = false;
-  }
+    supprimerImages();
+    afficher_debut_jeu(monNiveau); 
+  }  
   
-  afficher_debut_jeu(monNiveau); 
+  
+  
 })
 
 function afficher_debut_jeu (niveau : number){
@@ -100,11 +94,11 @@ function afficher_debut_jeu (niveau : number){
     let minute = Math.floor((totalSeconds - hour * 3600) / 60);
     let seconds = totalSeconds - (hour * 3600 + minute * 60);
     timer.innerText = hour + ":" + minute + ":" + seconds;
-    console.log(seconds);
-
+   
   }
 
   app.appendChild(divContainer);
+
   const tiles = new Array(niveau).fill('').map( (_, i) => {
     const tileDiv = document.createElement("div")
     tileDiv.setAttribute("class", "tileDiv")
@@ -173,3 +167,12 @@ elements.forEach( (element) => {
 
 }
 
+function supprimerImages()
+{
+  const myTiles = document.querySelectorAll(".tileDiv");
+  let myImages = Array.from(myTiles) ;
+  myImages.forEach((element) => {
+    element.remove();
+  })
+  
+}
