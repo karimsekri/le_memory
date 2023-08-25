@@ -4,8 +4,6 @@ const labelGagne = document.createElement("label") as HTMLLabelElement;
 const notreImage = document.createElement("img") as HTMLImageElement;
 const timer = document.createElement('label') as HTMLLabelElement;
 timer.setAttribute('id',"count_up_timer");
-//const colors = ["red", "blue", "green", "yellow", "orange", "purple", "pink", "brown"];
-
 
 const divResultat = document.createElement('div') as HTMLDivElement;
 divResultat.setAttribute('id','divResultat');
@@ -67,7 +65,6 @@ maCheckbox44.addEventListener("change", () => {
     afficher_debut_jeu(monNiveau);
   }  
 
-  
 })
 
 maCheckbox66.addEventListener("change", () => {
@@ -77,8 +74,6 @@ maCheckbox66.addEventListener("change", () => {
     supprimerImages();
     afficher_debut_jeu(monNiveau); 
   }  
-  
-  
   
 })
 
@@ -108,7 +103,6 @@ function afficher_debut_jeu (niveau : number){
     tile.setAttribute("class", "tile")
     tile.style.width ="100px"
     tile.style.height = "100px"
-    //tile.style.backgroundColor = colors[Math.floor(i/2)]
     tile.style.borderRadius = "5px";  
     tile.setAttribute('index', Math.floor(i/2).toString()) 
     tile.setAttribute("src",lastImage[0])
@@ -118,14 +112,12 @@ function afficher_debut_jeu (niveau : number){
   })
 
   tiles.sort(() => Math.random() - 0.5);
-  // Add the tiles to the app
   tiles.forEach( tileDiv => divContainer.appendChild(tileDiv))
   
 let nodeList = document.querySelectorAll(".tile");
 let elements = Array.from(nodeList) as HTMLImageElement[];
 elements.forEach( (element) => {
-        
-               
+                      
         element.addEventListener("click", () => {
          
           compteur++;                 
