@@ -54,6 +54,7 @@ function afficher_debut_jeu (){
   divContainer.setAttribute('id', 'divContainer')
 
   app.appendChild(divContainer);
+  app.appendChild(timer);
   
   const tiles = new Array(16).fill('').map( (_, i) => {
     const tileDiv = document.createElement("div")
@@ -107,6 +108,7 @@ elements.forEach( (element) => {
                   divContainer.remove();
                   labelGagne.innerText = "Vous avez gagné en : "   + compteur/2 + "  coups et en    " + timer.innerText + "  temps";
                   clearTimeout(timerVariable);
+                  app.removeChild(timer);
                   divResultat.appendChild(labelGagne);
                   divResultat.appendChild(btnStart);
                   app.appendChild(divResultat)
